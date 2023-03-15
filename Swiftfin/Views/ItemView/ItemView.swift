@@ -43,13 +43,7 @@ struct ItemView: View {
                     CollectionItemView(viewModel: .init(item: item))
                 }
             case .photoAlbum:
-                if UIDevice.isIPad {
-                    Text(L10n.notImplementedYetWithType(item.type ?? "--"))
-                    //iPadOSCollectionItemView(viewModel: .init(item: item))
-                } else {
                     PhotoAlbumItemView(viewModel: .init(item: item))
-                    //Text(L10n.notImplementedYetWithType(item.type ?? "--"))
-                }
             case .person:
                 LibraryView(viewModel: LibraryViewModel(parent: item, type: .person))
 //                LibraryView(viewModel: .init(parent: item, type: .person))

@@ -32,7 +32,7 @@ struct PhotoAlbumItemView: View {
     private var libraryGridPosterType
 
     static let ITEM_SIZE_MIN:CGFloat = 120
-    static let ITEM_SIZE_MAX:CGFloat = 200
+    static let ITEM_SIZE_MAX:CGFloat = 500
     static let ITEM_SPACING:CGFloat = 1
     
     
