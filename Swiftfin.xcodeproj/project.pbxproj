@@ -558,7 +558,20 @@
 		E70BDD1C29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70BDD1B29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift */; };
 		E746988A29C1211B00C2396C /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E746988929C1211B00C2396C /* PhotoView.swift */; };
 		E746988C29C1333900C2396C /* PhotoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E746988B29C1333900C2396C /* PhotoItemViewModel.swift */; };
+		E746989429C17B0000C2396C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628B95212670CABD0091AF3B /* WidgetKit.framework */; };
+		E746989529C17B0000C2396C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628B95232670CABD0091AF3B /* SwiftUI.framework */; };
+		E74698A529C17B0200C2396C /* Swiftfin WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E746989329C17B0000C2396C /* Swiftfin WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E74698A329C17B0200C2396C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5377CBE9263B596A003A4E83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E746989229C17B0000C2396C;
+			remoteInfo = "Swiftfin WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5302F8322658B74800647A2E /* CopyFiles */ = {
@@ -600,6 +613,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				E74698A529C17B0200C2396C /* Swiftfin WidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1001,6 +1015,7 @@
 		E70BDD1B29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumItemViewModel.swift; sourceTree = "<group>"; };
 		E746988929C1211B00C2396C /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		E746988B29C1333900C2396C /* PhotoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewModel.swift; sourceTree = "<group>"; };
+		E746989329C17B0000C2396C /* Swiftfin WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Swiftfin WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1084,6 +1099,15 @@
 				625CB57A2678C4A400530A6E /* ActivityIndicator in Frameworks */,
 				62666E3927E502CE00EC0ECD /* SwizzleSwift in Frameworks */,
 				E1347DB2279E3C6200BC6161 /* Puppy in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E746989029C17B0000C2396C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E746989529C17B0000C2396C /* SwiftUI.framework in Frameworks */,
+				E746989429C17B0000C2396C /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,6 +1321,7 @@
 			children = (
 				5377CBF1263B596A003A4E83 /* Swiftfin iOS.app */,
 				535870602669D21600D05A09 /* Swiftfin tvOS.app */,
+				E746989329C17B0000C2396C /* Swiftfin WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2317,6 +2342,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E74698A429C17B0200C2396C /* PBXTargetDependency */,
 			);
 			name = "Swiftfin iOS";
 			packageProductDependencies = (
@@ -2342,6 +2368,23 @@
 			productReference = 5377CBF1263B596A003A4E83 /* Swiftfin iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E746989229C17B0000C2396C /* Swiftfin WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E74698A629C17B0300C2396C /* Build configuration list for PBXNativeTarget "Swiftfin WidgetExtension" */;
+			buildPhases = (
+				E746988F29C17B0000C2396C /* Sources */,
+				E746989029C17B0000C2396C /* Frameworks */,
+				E746989129C17B0000C2396C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swiftfin WidgetExtension";
+			productName = "Swiftfin WidgetExtension";
+			productReference = E746989329C17B0000C2396C /* Swiftfin WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2351,7 +2394,7 @@
 				KnownAssetTags = (
 					New,
 				);
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					5358705F2669D21600D05A09 = {
@@ -2359,6 +2402,9 @@
 					};
 					5377CBF0263B596A003A4E83 = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					E746989229C17B0000C2396C = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -2410,6 +2456,7 @@
 			targets = (
 				5377CBF0263B596A003A4E83 /* Swiftfin iOS */,
 				5358705F2669D21600D05A09 /* Swiftfin tvOS */,
+				E746989229C17B0000C2396C /* Swiftfin WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -2465,6 +2512,13 @@
 				53913C1026D323FE00EB3286 /* Localizable.strings in Resources */,
 				AE8C3159265D6F90008AA076 /* bitrates.json in Resources */,
 				5377CBF9263B596B003A4E83 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E746989129C17B0000C2396C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2963,7 +3017,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E746988F29C17B0000C2396C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E74698A429C17B0200C2396C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E746989229C17B0000C2396C /* Swiftfin WidgetExtension */;
+			targetProxy = E74698A329C17B0200C2396C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		534D4FE726A7D7CC000A7A48 /* Localizable.strings */ = {
@@ -3280,7 +3349,6 @@
 		5377CC1C263B596B003A4E83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Swiftfin/Swiftfin.entitlements;
@@ -3315,7 +3383,6 @@
 		5377CC1D263B596B003A4E83 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Swiftfin/Swiftfin.entitlements;
@@ -3341,6 +3408,64 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E74698A729C17B0300C2396C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NM495L58FX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Swiftfin Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Swiftfin Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.development.swiftfin.Swiftfin-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E74698A829C17B0300C2396C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NM495L58FX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Swiftfin Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Swiftfin Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.development.swiftfin.Swiftfin-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3373,6 +3498,15 @@
 			buildConfigurations = (
 				5377CC1C263B596B003A4E83 /* Debug */,
 				5377CC1D263B596B003A4E83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E74698A629C17B0300C2396C /* Build configuration list for PBXNativeTarget "Swiftfin WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E74698A729C17B0300C2396C /* Debug */,
+				E74698A829C17B0300C2396C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

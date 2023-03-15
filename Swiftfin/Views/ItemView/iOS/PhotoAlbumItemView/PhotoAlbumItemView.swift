@@ -31,12 +31,30 @@ struct PhotoAlbumItemView: View {
     @Default(.Customization.Library.gridPosterType)
     private var libraryGridPosterType
 
-    static let ITEM_SIZE_MIN:CGFloat = 120
-    static let ITEM_SIZE_MAX:CGFloat = 500
+    static let ITEM_SIZE_MIN_IOS:CGFloat = 120
+    static let ITEM_SIZE_MAX_IOS:CGFloat = 200
+    
+    static let ITEM_SIZE_MIN_IPADOS:CGFloat = 200
+    static let ITEM_SIZE_MAX_IPADOS:CGFloat = 600
+    
     static let ITEM_SPACING:CGFloat = 1
     
+    private static func getMaxItemSize() -> CGFloat {
+        if UIDevice.isIPad {
+            return PhotoAlbumItemView.ITEM_SIZE_MAX_IPADOS
+        }
+        return PhotoAlbumItemView.ITEM_SIZE_MAX_IOS
+    }
     
-    private let adpativeColums = [GridItem(.adaptive(minimum: ITEM_SIZE_MIN, maximum: ITEM_SIZE_MAX), spacing: ITEM_SPACING)]
+    private static func getMinItemSize() -> CGFloat {
+        if UIDevice.isIPad {
+            return PhotoAlbumItemView.ITEM_SIZE_MIN_IPADOS
+        }
+        return PhotoAlbumItemView.ITEM_SIZE_MIN_IOS
+    }
+    
+    
+    private let adpativeColums = [GridItem(.adaptive(minimum: PhotoAlbumItemView.getMinItemSize(), maximum: PhotoAlbumItemView.getMaxItemSize()), spacing: ITEM_SPACING)]
     //private var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
         ScrollView(.vertical) {
@@ -52,7 +70,7 @@ struct PhotoAlbumItemView: View {
                                 itemRouter.route(to: \.item, album)
                             }
                     }
-                }
+                }.padding(10)
             }
             LazyVGrid(columns: adpativeColums, spacing: PhotoAlbumItemView.ITEM_SPACING) {
                 ForEach(Array(viewModel.photoAlbumItems.enumerated()), id: \.element.hashValue) { index, item in
@@ -64,7 +82,7 @@ struct PhotoAlbumItemView: View {
                             itemRouter.route(to: \.photo, photoModel)
                         }
                     } label: {
-                        ImageView(item.imageSource(.primary, maxWidth: PhotoAlbumItemView.ITEM_SIZE_MAX))
+                        ImageView(item.imageSource(.primary, maxWidth: PhotoAlbumItemView.getMaxItemSize()))
                             .failure {
                                 InitialFailureView(item.displayName.initials)
                             }

@@ -45,7 +45,7 @@ struct CustomizeViewsSettings: View {
                         Text(type.localizedName).tag(type.rawValue)
                     }
                 }
-
+            
             } header: {
                 EmptyView()
             }
