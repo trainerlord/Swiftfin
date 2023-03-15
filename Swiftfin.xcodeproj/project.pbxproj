@@ -553,6 +553,11 @@
 		E1FE69A728C29B720021BC93 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE69A628C29B720021BC93 /* ProgressBar.swift */; };
 		E1FE69A828C29B720021BC93 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE69A628C29B720021BC93 /* ProgressBar.swift */; };
 		E1FE69AA28C29CC20021BC93 /* LandscapePosterProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE69A928C29CC20021BC93 /* LandscapePosterProgressBar.swift */; };
+		E70BDD1829C02AEB0096E4A6 /* PhotoAlbumItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70BDD1729C02AEB0096E4A6 /* PhotoAlbumItemContentView.swift */; };
+		E70BDD1A29C02B150096E4A6 /* PhotoAlbumItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70BDD1929C02B150096E4A6 /* PhotoAlbumItemView.swift */; };
+		E70BDD1C29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70BDD1B29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift */; };
+		E746988A29C1211B00C2396C /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E746988929C1211B00C2396C /* PhotoView.swift */; };
+		E746988C29C1333900C2396C /* PhotoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E746988B29C1333900C2396C /* PhotoItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -991,6 +996,11 @@
 		E1FCD09526C47118007C8DCF /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		E1FE69A628C29B720021BC93 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		E1FE69A928C29CC20021BC93 /* LandscapePosterProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapePosterProgressBar.swift; sourceTree = "<group>"; };
+		E70BDD1729C02AEB0096E4A6 /* PhotoAlbumItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumItemContentView.swift; sourceTree = "<group>"; };
+		E70BDD1929C02B150096E4A6 /* PhotoAlbumItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumItemView.swift; sourceTree = "<group>"; };
+		E70BDD1B29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumItemViewModel.swift; sourceTree = "<group>"; };
+		E746988929C1211B00C2396C /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		E746988B29C1333900C2396C /* PhotoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1628,6 +1638,8 @@
 				62E632E2267D3BA60063E547 /* MovieItemViewModel.swift */,
 				62E632E8267D3FF50063E547 /* SeasonItemViewModel.swift */,
 				62E632EB267D410B0063E547 /* SeriesItemViewModel.swift */,
+				E70BDD1B29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift */,
+				E746988B29C1333900C2396C /* PhotoItemViewModel.swift */,
 			);
 			path = ItemViewModel;
 			sourceTree = "<group>";
@@ -1800,6 +1812,7 @@
 				E13DD3FB2717EAE8009D4DAF /* UserListView.swift */,
 				E1171A1A28A2215800FA1AF5 /* UserSignInView */,
 				E193D5452719418B00900D82 /* VideoPlayer */,
+				E746988929C1211B00C2396C /* PhotoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1941,6 +1954,7 @@
 		E18E01C0288747230022598C /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E70BDD1629C02ABE0096E4A6 /* PhotoAlbumItemView */,
 				E18E01C8288747230022598C /* CollectionItemView */,
 				E18E01C1288747230022598C /* EpisodeItemView */,
 				E18E01CE288747230022598C /* MovieItemView */,
@@ -2238,6 +2252,15 @@
 				E113133328BE988200930F75 /* FilterDrawerHStack.swift */,
 			);
 			path = FilterDrawerHStack;
+			sourceTree = "<group>";
+		};
+		E70BDD1629C02ABE0096E4A6 /* PhotoAlbumItemView */ = {
+			isa = PBXGroup;
+			children = (
+				E70BDD1729C02AEB0096E4A6 /* PhotoAlbumItemContentView.swift */,
+				E70BDD1929C02B150096E4A6 /* PhotoAlbumItemView.swift */,
+			);
+			path = PhotoAlbumItemView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2707,6 +2730,7 @@
 				6220D0B426D5ED8000B8E046 /* LibraryCoordinator.swift in Sources */,
 				6220D0C026D61C5000B8E046 /* ItemCoordinator.swift in Sources */,
 				E18E01DB288747230022598C /* iPadOSEpisodeItemView.swift in Sources */,
+				E746988C29C1333900C2396C /* PhotoItemViewModel.swift in Sources */,
 				E13DD3F227179378009D4DAF /* UserSignInCoordinator.swift in Sources */,
 				621338932660107500A81A2A /* StringExtensions.swift in Sources */,
 				62C83B08288C6A630004ED0C /* FontPicker.swift in Sources */,
@@ -2747,6 +2771,7 @@
 				E17FB55B28C1266400311DFE /* GenresHStack.swift in Sources */,
 				E18E01FA288747580022598C /* AboutAppView.swift in Sources */,
 				6220D0AD26D5EABB00B8E046 /* ViewExtensions.swift in Sources */,
+				E746988A29C1211B00C2396C /* PhotoView.swift in Sources */,
 				E19E551F2897326C003CE330 /* BottomEdgeGradientModifier.swift in Sources */,
 				E13DD3EC27178A54009D4DAF /* UserSignInViewModel.swift in Sources */,
 				E12CC1BE28D11F4500678D5D /* RecentlyAddedView.swift in Sources */,
@@ -2792,10 +2817,12 @@
 				E118959D289312020042947B /* BaseItemPerson+Poster.swift in Sources */,
 				E11D224227378428003F9CB3 /* ServerDetailCoordinator.swift in Sources */,
 				6264E88C273850380081A12A /* Strings.swift in Sources */,
+				E70BDD1A29C02B150096E4A6 /* PhotoAlbumItemView.swift in Sources */,
 				C4AE2C3227498D6A00AE13CF /* LiveTVProgramsView.swift in Sources */,
 				62ECA01826FA685A00E8EBB7 /* DeepLink.swift in Sources */,
 				62E632E6267D3F5B0063E547 /* EpisodeItemViewModel.swift in Sources */,
 				E113133428BE988200930F75 /* FilterDrawerHStack.swift in Sources */,
+				E70BDD1829C02AEB0096E4A6 /* PhotoAlbumItemContentView.swift in Sources */,
 				5321753B2671BCFC005491E6 /* SettingsViewModel.swift in Sources */,
 				E107BB9327880A8F00354E07 /* CollectionItemViewModel.swift in Sources */,
 				E1171A1928A2212600FA1AF5 /* QuickConnectView.swift in Sources */,
@@ -2880,6 +2907,7 @@
 				E18E01E9288747230022598C /* SeriesItemView.swift in Sources */,
 				E18E023A288749540022598C /* UIScrollViewExtensions.swift in Sources */,
 				E1D4BF7C2719D05000A11E64 /* BasicAppSettingsView.swift in Sources */,
+				E70BDD1C29C02B450096E4A6 /* PhotoAlbumItemViewModel.swift in Sources */,
 				E173DA5026D048D600CC4EB7 /* ServerDetailView.swift in Sources */,
 				62EC352F267666A5000E9F2D /* SessionManager.swift in Sources */,
 				E17FB55728C1256400311DFE /* CastAndCrewHStack.swift in Sources */,
@@ -3180,13 +3208,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 16.1;
 			};
 			name = Debug;
 		};
@@ -3237,12 +3266,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TVOS_DEPLOYMENT_TARGET = 16.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -3258,7 +3288,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NM495L58FX;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
@@ -3270,7 +3300,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.jellyfin.swiftfin;
+				PRODUCT_BUNDLE_IDENTIFIER = org.development.swiftfin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
@@ -3294,7 +3324,7 @@
 				CURRENT_PROJECT_VERSION = 78;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NM495L58FX;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
@@ -3306,7 +3336,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.jellyfin.swiftfin;
+				PRODUCT_BUNDLE_IDENTIFIER = org.development.swiftfin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;

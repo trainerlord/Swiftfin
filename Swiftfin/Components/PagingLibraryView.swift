@@ -32,6 +32,7 @@ struct PagingLibraryView: View {
 
     @ViewBuilder
     private var libraryListView: some View {
+        
         CollectionView(items: viewModel.items) { _, item, _ in
             LibraryItemRow(item: item)
                 .onSelect {
@@ -59,7 +60,15 @@ struct PagingLibraryView: View {
 
     @ViewBuilder
     private var libraryGridView: some View {
-        CollectionView(items: viewModel.items) { _, item, _ in
+        
+        let masterKey = parentKey(items: viewModel.items)
+        //HStack{
+        //    ForEach(viewModel.items) { it in
+        //        Text("\(it.name ?? "NIL")").frame(height: 0)
+        //    }
+        //}
+        CollectionView(items: viewModel.items.filter{$0.type != .photoAlbum || $0.parentId ?? "Nil" == masterKey}) { _, item, _ in
+            //Text("\(item.name ?? "NIL"): \(item.parentId ?? "NIL")")
             PosterButton(item: item, type: libraryGridPosterType)
                 .scaleItem(libraryGridPosterType == .landscape && UIDevice.isPhone ? 0.85 : 1)
                 .onSelect {
@@ -95,6 +104,24 @@ struct PagingLibraryView: View {
         case .list:
             libraryListView
         }
+    }
+    
+    private func parentKey(items: [BaseItemDto]) -> String {
+        var keys: [String: Int] = [:]
+        items.forEach{item in
+            if keys[item.parentId ?? "NIL"] == nil {
+                keys[item.parentId ?? "NIL"] = 0
+            }
+            keys[item.parentId ?? "NIL"]! += 1
+        }
+        var largest = (key: "", value: 0)
+        keys.forEach { key in
+            
+            if largest.value <= key.value {
+                largest = key
+            }
+        }
+        return largest.key
     }
 }
 

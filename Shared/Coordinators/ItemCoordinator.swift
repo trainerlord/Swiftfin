@@ -29,6 +29,8 @@ final class ItemCoordinator: NavigationCoordinatable {
     var itemOverview = makeItemOverview
     @Route(.fullScreen)
     var videoPlayer = makeVideoPlayer
+    @Route(.push)
+    var photo = makePhotoViewer
 
     let itemDto: BaseItemDto
 
@@ -58,6 +60,10 @@ final class ItemCoordinator: NavigationCoordinatable {
 
     func makeVideoPlayer(viewModel: VideoPlayerViewModel) -> NavigationViewCoordinator<VideoPlayerCoordinator> {
         NavigationViewCoordinator(VideoPlayerCoordinator(viewModel: viewModel))
+    }
+    
+    func makePhotoViewer(item: PhotoItemViewModel) -> PhotoView {
+        PhotoView(photoModel: item)
     }
 
     @ViewBuilder

@@ -26,7 +26,7 @@ final class MediaViewModel: ViewModel {
             .appending(libraries)
     }
 
-    private static let supportedCollectionTypes: [String] = ["boxsets", "folders", "movies", "tvshows", "unknown"]
+    private static let supportedCollectionTypes: [String] = ["boxsets", "folders", "movies", "tvshows", "musicalbum", "homevideos", "unknown"]
 
     override init() {
         super.init()
@@ -42,7 +42,10 @@ final class MediaViewModel: ViewModel {
                 self.handleAPIRequestError(completion: completion)
             }, receiveValue: { response in
                 guard let items = response.items else { return }
-                let filteredLibraries = items.filter { Self.supportedCollectionTypes.contains($0.collectionType ?? "unknown") }
+                
+                
+                let filteredLibraries = items.filter {
+                    Self.supportedCollectionTypes.contains($0.collectionType ?? "unknown") }
                 filteredLibraries.forEach {
                     self.getRandomItemImageSource(with: nil, id: $0.id, key: $0.id ?? "")
                 }

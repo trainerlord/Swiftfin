@@ -70,13 +70,14 @@ final class LibraryViewModel: PagingLibraryViewModel {
 
         if let parent = parent {
             switch type {
-            case .library, .folders:
+            case .library, .folders, .homeVideos:
                 libraryID = parent.id
             case .person:
                 personIDs = [parent].compactMap(\.id)
             case .studio:
                 studioIDs = [parent].compactMap(\.id)
             }
+            
         }
 
         var recursive = true
@@ -87,8 +88,11 @@ final class LibraryViewModel: PagingLibraryViewModel {
         } else if type == .folders {
             recursive = false
             includeItemTypes = [.movie, .boxSet, .series, .folder, .collectionFolder]
+        } else if type == .homeVideos {
+            recursive = false
+            includeItemTypes = [.folder, .collectionFolder, .photoAlbum]
         } else {
-            includeItemTypes = [.movie, .boxSet, .series]
+            includeItemTypes = [.movie, .boxSet, .series, .photoAlbum]
         }
 
         var excludedIDs: [String]?

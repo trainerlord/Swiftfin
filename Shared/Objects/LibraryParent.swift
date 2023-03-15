@@ -18,4 +18,5 @@ enum LibraryParentType {
     case folders
     case person
     case studio
+    case homeVideos
 }

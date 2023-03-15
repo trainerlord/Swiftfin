@@ -10,12 +10,14 @@ import Combine
 import Foundation
 import JellyfinAPI
 
-final class CollectionItemViewModel: ItemViewModel {
+final class PhotoAlbumItemViewModel: ItemViewModel {
 
     @Published
-    var collectionItems: [BaseItemDto] = []
+    var photoAlbumItems: [BaseItemDto] = []
     
-
+    @Published
+    var SelectedPhoto: BaseItemDto? = nil
+    
     override init(item: BaseItemDto) {
         super.init(item: item)
 
@@ -32,7 +34,7 @@ final class CollectionItemViewModel: ItemViewModel {
         .sink { [weak self] completion in
             self?.handleAPIRequestError(completion: completion)
         } receiveValue: { [weak self] response in
-            self?.collectionItems = response.items ?? []
+            self?.photoAlbumItems = response.items ?? []
         }
         .store(in: &cancellables)
     }

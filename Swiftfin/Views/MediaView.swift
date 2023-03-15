@@ -31,6 +31,7 @@ struct MediaView: View {
             PosterButton(item: item, type: .landscape)
                 .scaleItem(UIDevice.isPhone ? 0.85 : 1)
                 .onSelect {
+                    print("\(item.library.collectionType ?? "NIL")")
                     switch item.library.collectionType {
                     case "favorites":
                         router.route(to: \.library, .init(parent: item.library, type: .library, filters: .favorites))
@@ -38,6 +39,8 @@ struct MediaView: View {
                         router.route(to: \.library, .init(parent: item.library, type: .folders, filters: .init()))
                     case "liveTV":
                         router.route(to: \.liveTV)
+                    case "homevideos":
+                        router.route(to: \.library, .init(parent: item.library, type: .homeVideos, filters: .init()))
                     default:
                         router.route(to: \.library, .init(parent: item.library, type: .library, filters: .init()))
                     }
