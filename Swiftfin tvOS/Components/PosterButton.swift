@@ -73,7 +73,6 @@ struct PosterButton<Item: Poster>: View {
                         onFocusChanged?(newValue)
                     }
             }
-
             content()
                 .eraseToAnyView()
                 .zIndex(-1)

@@ -27,17 +27,22 @@ final class ItemCoordinator: NavigationCoordinatable {
     var castAndCrew = makeCastAndCrew
     @Route(.modal)
     var itemOverview = makeItemOverview
-
+    @Route(.push)
+    var photo = makePhotoViewer
+    
     #if os(iOS)
     @Route(.modal)
     var mediaSourceInfo = makeMediaSourceInfo
     @Route(.modal)
     var downloadTask = makeDownloadTask
+    
     #endif
 
     #if os(tvOS)
     @Route(.fullScreen)
     var videoPlayer = makeVideoPlayer
+    @Route(.push)
+    var photo = makePhotoViewer
     #endif
 
     let itemDto: BaseItemDto
@@ -64,6 +69,9 @@ final class ItemCoordinator: NavigationCoordinatable {
 
     func makeItemOverview(item: BaseItemDto) -> NavigationViewCoordinator<ItemOverviewCoordinator> {
         NavigationViewCoordinator(ItemOverviewCoordinator(item: itemDto))
+    }
+    func makePhotoViewer(item: PhotoItemViewModel) -> PhotoView {
+        PhotoView(photoModel: item)
     }
 
     #if os(iOS)

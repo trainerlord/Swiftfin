@@ -42,6 +42,8 @@ struct ItemView: View {
                 } else {
                     CollectionItemView(viewModel: .init(item: item))
                 }
+            case .photoAlbum:
+                    PhotoAlbumItemView(viewModel: .init(item: item))
             case .person:
                 LibraryView(viewModel: .init(parent: item, type: .person))
             default:

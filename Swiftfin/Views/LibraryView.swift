@@ -57,6 +57,13 @@ struct LibraryView: View {
 
     var body: some View {
         Group {
+            /*ScrollView (.vertical) {
+                VStack {
+                    ForEach(viewModel.items) { it in
+                        Text("\(it.name ?? "NIL")")
+                    }
+                }
+            }.frame(height: 200)*/
             if viewModel.isLoading && viewModel.items.isEmpty {
                 loadingView
             } else if viewModel.items.isEmpty {

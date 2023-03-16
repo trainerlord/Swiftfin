@@ -31,7 +31,7 @@ final class MediaViewModel: ViewModel {
             )
     }
 
-    private static let supportedCollectionTypes: [String] = ["boxsets", "folders", "movies", "tvshows", "unknown"]
+    private static let supportedCollectionTypes: [String] = ["boxsets", "folders", "movies", "tvshows", "musicalbum", "homevideos", "unknown"]
 
     override init() {
         super.init()
@@ -43,7 +43,6 @@ final class MediaViewModel: ViewModel {
         Task {
             let request = Paths.getUserViews(userID: userSession.user.id)
             let response = try await userSession.client.send(request)
-
             guard let items = response.value.items else { return }
             let supportedLibraries = items.filter { Self.supportedCollectionTypes.contains($0.collectionType ?? "unknown") }
 

@@ -7,16 +7,13 @@
 //
 
 import Foundation
+import JellyfinAPI
 
-protocol LibraryParent: Displayable {
-    var id: String? { get }
-}
-
-// TODO: Remove so multiple people/studios can be used
-enum LibraryParentType {
-    case library
-    case folders
-    case person
-    case studio
-    case homeVideos
+final class PhotoItemViewModel: ObservableObject {
+    
+    @Published
+    var photoAlbumItems: [BaseItemDto] = []
+    
+    @Published
+    var SelectedPhoto: Int = -1
 }

@@ -14,6 +14,7 @@ final class CollectionItemViewModel: ItemViewModel {
 
     @Published
     var collectionItems: [BaseItemDto] = []
+    
 
     override init(item: BaseItemDto) {
         super.init(item: item)

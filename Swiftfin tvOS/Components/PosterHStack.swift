@@ -19,7 +19,6 @@ struct PosterHStack<Item: Poster>: View {
     private var contextMenu: (Item) -> any View
     private var trailingContent: () -> any View
     private var onSelect: (Item) -> Void
-
     // See PosterButton for implementation reason
     private var focusedItem: Binding<Item?>?
 
