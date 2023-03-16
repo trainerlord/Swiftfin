@@ -33,6 +33,8 @@ class UINavBarDrawerHostingController: UIViewController {
 
     private let buttons: () -> any View
     private let content: () -> any View
+    
+    private let drawerHeight: CGFloat = 36
 
     private lazy var navBarBlurView: UIVisualEffectView = {
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThinMaterial))
