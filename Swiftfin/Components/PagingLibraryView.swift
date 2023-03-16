@@ -3,7 +3,7 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, you can obtain one at https://mozilla.org/MPL/2.0/.
 //
-// Copyright (c) 2022 Jellyfin & Jellyfin Contributors
+// Copyright (c) 2023 Jellyfin & Jellyfin Contributors
 //
 
 import CollectionView
@@ -13,14 +13,15 @@ import SwiftUI
 
 struct PagingLibraryView: View {
 
-    @ObservedObject
-    var viewModel: PagingLibraryViewModel
-    private var onSelect: (BaseItemDto) -> Void
-
     @Default(.Customization.Library.gridPosterType)
     private var libraryGridPosterType
     @Default(.Customization.Library.viewType)
     private var libraryViewType
+
+    @ObservedObject
+    var viewModel: PagingLibraryViewModel
+
+    private var onSelect: (BaseItemDto) -> Void
 
     private var gridLayout: NSCollectionLayoutSection.GridLayoutMode {
         if libraryGridPosterType == .landscape && UIDevice.isPhone {
@@ -32,8 +33,7 @@ struct PagingLibraryView: View {
 
     @ViewBuilder
     private var libraryListView: some View {
-        
-        CollectionView(items: viewModel.items) { _, item, _ in
+        CollectionView(items: viewModel.items.elements) { _, item, _ in
             LibraryItemRow(item: item)
                 .onSelect {
                     onSelect(item)
@@ -60,16 +60,8 @@ struct PagingLibraryView: View {
 
     @ViewBuilder
     private var libraryGridView: some View {
-        
-        let masterKey = parentKey(items: viewModel.items)
-        //HStack{
-        //    ForEach(viewModel.items) { it in
-        //        Text("\(it.name ?? "NIL")").frame(height: 0)
-        //    }
-        //}
-        CollectionView(items: viewModel.items.filter{$0.type != .photoAlbum || $0.parentId ?? "Nil" == masterKey}) { _, item, _ in
-            //Text("\(item.name ?? "NIL"): \(item.parentId ?? "NIL")")
-            PosterButton(item: item, type: libraryGridPosterType)
+        CollectionView(items: viewModel.items.elements) { _, item, _ in
+            PosterButton(state: .item(item), type: libraryGridPosterType)
                 .scaleItem(libraryGridPosterType == .landscape && UIDevice.isPhone ? 0.85 : 1)
                 .onSelect {
                     onSelect(item)
@@ -127,13 +119,13 @@ struct PagingLibraryView: View {
 
 extension PagingLibraryView {
     init(viewModel: PagingLibraryViewModel) {
-        self.viewModel = viewModel
-        self.onSelect = { _ in }
+        self.init(
+            viewModel: viewModel,
+            onSelect: { _ in }
+        )
     }
 
     func onSelect(_ action: @escaping (BaseItemDto) -> Void) -> Self {
-        var copy = self
-        copy.onSelect = action
-        return copy
+        copy(modifying: \.onSelect, with: action)
     }
 }

@@ -3,7 +3,7 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, you can obtain one at https://mozilla.org/MPL/2.0/.
 //
-// Copyright (c) 2022 Jellyfin & Jellyfin Contributors
+// Copyright (c) 2023 Jellyfin & Jellyfin Contributors
 //
 
 import CollectionView
@@ -13,13 +13,15 @@ import SwiftUI
 
 struct SearchView: View {
 
+    @Default(.Customization.searchPosterType)
+    private var searchPosterType
+
     @EnvironmentObject
     private var router: SearchCoordinator.Router
+
     @ObservedObject
     var viewModel: SearchViewModel
 
-    @Default(.Customization.searchPosterType)
-    private var searchPosterType
     @State
     private var searchText = ""
 
@@ -28,9 +30,9 @@ struct SearchView: View {
         VStack(spacing: 20) {
             ForEach(viewModel.suggestions, id: \.id) { item in
                 Button {
-                    searchText = item.displayName
+                    searchText = item.displayTitle
                 } label: {
-                    Text(item.displayName)
+                    Text(item.displayTitle)
                         .font(.body)
                 }
             }
@@ -83,7 +85,7 @@ struct SearchView: View {
         PosterHStack(
             title: title,
             type: posterType,
-            items: viewModel[keyPath: keyPath]
+            items: viewModel[keyPath: keyPath].map { .item($0) }
         )
         .onSelect { item in
             baseItemOnSelect(item)

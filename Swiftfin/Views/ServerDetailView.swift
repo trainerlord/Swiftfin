@@ -3,7 +3,7 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, you can obtain one at https://mozilla.org/MPL/2.0/.
 //
-// Copyright (c) 2022 Jellyfin & Jellyfin Contributors
+// Copyright (c) 2023 Jellyfin & Jellyfin Contributors
 //
 
 import SwiftUI
@@ -12,12 +12,13 @@ struct ServerDetailView: View {
 
     @ObservedObject
     var viewModel: ServerDetailViewModel
+
     @State
-    var currentServerURI: String
+    private var currentServerURI: String = ""
 
     init(viewModel: ServerDetailViewModel) {
         self.viewModel = viewModel
-        self.currentServerURI = viewModel.server.currentURI
+//        self.currentServerURI = viewModel.server.currentURI
     }
 
     var body: some View {
@@ -31,12 +32,12 @@ struct ServerDetailView: View {
                 }
 
                 Picker(L10n.url, selection: $currentServerURI) {
-                    ForEach(viewModel.server.uris.sorted(), id: \.self) { uri in
-                        Text(uri).tag(uri)
-                            .foregroundColor(.secondary)
-                    }.onChange(of: currentServerURI) { newValue in
-                        viewModel.setServerCurrentURI(uri: newValue)
-                    }
+//                    ForEach(viewModel.server.uris.sorted(), id: \.self) { uri in
+//                        Text(uri).tag(uri)
+//                            .foregroundColor(.secondary)
+//                    }.onChange(of: currentServerURI) { newValue in
+//                        viewModel.setServerCurrentURI(uri: newValue)
+//                    }
                 }
 
                 HStack {

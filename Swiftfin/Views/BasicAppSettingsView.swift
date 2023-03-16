@@ -3,7 +3,7 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, you can obtain one at https://mozilla.org/MPL/2.0/.
 //
-// Copyright (c) 2022 Jellyfin & Jellyfin Contributors
+// Copyright (c) 2023 Jellyfin & Jellyfin Contributors
 //
 
 import Defaults
@@ -12,27 +12,29 @@ import SwiftUI
 
 struct BasicAppSettingsView: View {
 
-    @EnvironmentObject
-    private var basicAppSettingsRouter: BasicAppSettingsCoordinator.Router
-    @ObservedObject
-    var viewModel: BasicAppSettingsViewModel
-    @State
-    var resetUserSettingsTapped: Bool = false
-    @State
-    var resetAppSettingsTapped: Bool = false
-    @State
-    var removeAllUsersTapped: Bool = false
-
+    @Default(.accentColor)
+    private var accentColor
     @Default(.appAppearance)
-    var appAppearance
-    @Default(.defaultHTTPScheme)
-    var defaultHTTPScheme
+    private var appAppearance
+
+    @EnvironmentObject
+    private var router: BasicAppSettingsCoordinator.Router
+
+    @ObservedObject
+    var viewModel: SettingsViewModel
+
+    @State
+    private var resetUserSettingsTapped: Bool = false
+    @State
+    private var resetAppSettingsTapped: Bool = false
+    @State
+    private var removeAllUsersTapped: Bool = false
 
     var body: some View {
         Form {
 
             Button {
-                basicAppSettingsRouter.route(to: \.about)
+                router.route(to: \.about)
             } label: {
                 HStack {
                     L10n.about.text
@@ -43,24 +45,26 @@ struct BasicAppSettingsView: View {
             }
 
             Section {
-                Picker(L10n.appearance, selection: $appAppearance) {
-                    ForEach(self.viewModel.appearances, id: \.self) { appearance in
-                        Text(appearance.localizedName).tag(appearance.rawValue)
+                EnumPicker(title: L10n.appearance, selection: $appAppearance)
+
+                ChevronButton(title: "App Icon")
+                    .onSelect {
+                        router.route(to: \.appIconSelector)
                     }
-                }
             } header: {
                 L10n.accessibility.text
             }
 
             Section {
-                Picker(L10n.defaultScheme, selection: $defaultHTTPScheme) {
-                    ForEach(HTTPScheme.allCases, id: \.self) { scheme in
-                        Text("\(scheme.rawValue)")
-                    }
-                }
-            } header: {
-                L10n.networking.text
+                ColorPicker("Accent Color", selection: $accentColor, supportsOpacity: false)
+            } footer: {
+                Text("Some views may need an app restart to update.")
             }
+
+            ChevronButton(title: "Logs")
+                .onSelect {
+                    router.route(to: \.log)
+                }
 
             Button {
                 resetUserSettingsTapped = true
@@ -82,34 +86,29 @@ struct BasicAppSettingsView: View {
         }
         .alert(L10n.resetUserSettings, isPresented: $resetUserSettingsTapped, actions: {
             Button(role: .destructive) {
-                viewModel.resetUserSettings()
+//                viewModel.resetUserSettings()
             } label: {
                 L10n.reset.text
             }
         })
         .alert(L10n.resetAppSettings, isPresented: $resetAppSettingsTapped, actions: {
             Button(role: .destructive) {
-                viewModel.resetAppSettings()
+//                viewModel.resetAppSettings()
             } label: {
                 L10n.reset.text
             }
         })
         .alert(L10n.removeAllUsers, isPresented: $removeAllUsersTapped, actions: {
             Button(role: .destructive) {
-                viewModel.removeAllUsers()
+//                viewModel.removeAllUsers()
             } label: {
                 L10n.reset.text
             }
         })
-        .navigationBarTitle(L10n.settings, displayMode: .inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Button {
-                    basicAppSettingsRouter.dismissCoordinator()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                }
-            }
+        .navigationBarTitle(L10n.settings)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationCloseButton {
+            router.dismissCoordinator()
         }
     }
 }
