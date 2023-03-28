@@ -30,57 +30,69 @@ struct SeriesEpisodeSelector: View {
 }
 
 extension SeriesEpisodeSelector {
-
+    
     // MARK: SeasonsHStack
-
+    
     struct SeasonsHStack: View {
-
+        
         @ObservedObject
         var viewModel: SeriesItemViewModel
-
+        
         @EnvironmentObject
         private var focusGuide: FocusGuide
-
+        
         @FocusState
         private var focusedSeason: BaseItemDto?
-
+        
+        
         var body: some View {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(viewModel.menuSections.keys.sorted(by: { viewModel.menuSectionSort($0, $1) }), id: \.self) { season in
-                        Button {
-                            Text(season.displayTitle)
-                                .fontWeight(.semibold)
-                                .fixedSize()
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 20)
-                                .if(viewModel.menuSelection == season) { text in
-                                    text
-                                        .background(Color.white)
-                                        .foregroundColor(.black)
-                                }
+            
+            
+            //NOTE:
+            //The Reason my onChanged was Changed in favor from pressing the button was due to the reason that
+            //As of tvOS 16 onChange breaks ScrollViews and For Shows with Alot of Seasons Like Suits
+            //This is a Major Headache as you can't see the Later Seasons
+            
+            //Hopefully This Bug gets resolved by Apple
+                ScrollView(.horizontal) {
+                    LazyHStack {
+                        ForEach(viewModel.menuSections.keys.sorted(by: { viewModel.menuSectionSort($0, $1) }), id: \.self) { season in
+                            Button {
+                                viewModel.select(section: season)
+                            } label: {
+                                Text(season.displayTitle)
+                                    .fontWeight(.semibold)
+                                    .fixedSize()
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 20)
+                                    .if(viewModel.menuSelection == season) { text in
+                                        text
+                                            .background(Color.white)
+                                            .foregroundColor(.black)
+                                            .containerShape(RoundedRectangle(cornerRadius: 10))
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                            .id(season)
+                            .focused($focusedSeason, equals: season)
+                            
                         }
-                        .buttonStyle(.plain)
-                        .id(season)
-                        .focused($focusedSeason, equals: season)
                     }
-                }
-                .focusGuide(
-                    focusGuide,
-                    tag: "seasons",
-                    onContentFocus: { focusedSeason = viewModel.menuSelection },
-                    top: "top",
-                    bottom: "episodes"
-                )
-                .frame(height: 70)
-                .padding(.horizontal, 50)
-                .padding(.top)
-                .padding(.bottom, 45)
-            }
-            .onChange(of: focusedSeason) { season in
-                guard let season = season else { return }
-                viewModel.select(section: season)
-            }
+                    .focusGuide(
+                        focusGuide,
+                        tag: "seasons",
+                        onContentFocus: { focusedSeason = viewModel.menuSelection },
+                        top: "top",
+                        bottom: "episodes"
+                    )
+                    .padding(.horizontal, 50)
+                    .padding(.top)
+                    .padding(.bottom, 45)
+                    .transition(.move(edge: .bottom))
+                }/*.onChange(of: focusedSeason) { season in
+                    guard let season = season else { return }
+                    viewModel.select(section: season)
+                }*/
         }
     }
 }

@@ -41,8 +41,6 @@ final class ItemCoordinator: NavigationCoordinatable {
     #if os(tvOS)
     @Route(.fullScreen)
     var videoPlayer = makeVideoPlayer
-    @Route(.push)
-    var photo = makePhotoViewer
     #endif
 
     let itemDto: BaseItemDto

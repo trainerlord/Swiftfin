@@ -32,13 +32,13 @@ struct ServerDetailView: View {
                 }
 
                 Picker(L10n.url, selection: $currentServerURI) {
-//                    ForEach(viewModel.server.uris.sorted(), id: \.self) { uri in
-//                        Text(uri).tag(uri)
-//                            .foregroundColor(.secondary)
-//                    }.onChange(of: currentServerURI) { newValue in
-//                        viewModel.setServerCurrentURI(uri: newValue)
-//                    }
-                }
+                    ForEach(viewModel.server.urls.asArray, id: \.self) { uri in
+                        Text(uri.absoluteString).tag(uri.absoluteString)
+                            .foregroundColor(.secondary)
+                    }
+                }.onChange(of: currentServerURI) { newValue in
+                        viewModel.setServerCurrentURI(uri: newValue)
+                    }
 
                 HStack {
                     L10n.version.text

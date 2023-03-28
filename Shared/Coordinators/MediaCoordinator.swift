@@ -27,12 +27,10 @@ final class MediaCoordinator: NavigationCoordinatable {
     @Route(.push)
     var downloads = makeDownloads
     #endif
-
     #if os(tvOS)
     func makeLibrary(parameters: LibraryCoordinator.Parameters) -> NavigationViewCoordinator<LibraryCoordinator> {
         NavigationViewCoordinator(LibraryCoordinator(parameters: parameters))
     }
-
     #else
     func makeLibrary(parameters: LibraryCoordinator.Parameters) -> LibraryCoordinator {
         LibraryCoordinator(parameters: parameters)

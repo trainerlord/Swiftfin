@@ -25,17 +25,19 @@ final class PhotoAlbumItemViewModel: ItemViewModel {
     }
 
     private func getCollectionItems() {
-        ItemsAPI.getItems(
-            userId: SessionManager.main.currentLogin.user.id,
-            parentId: item.id,
-            fields: ItemFields.allCases
-        )
-        .trackActivity(loading)
-        .sink { [weak self] completion in
-            self?.handleAPIRequestError(completion: completion)
-        } receiveValue: { [weak self] response in
-            self?.photoAlbumItems = response.items ?? []
+        Task {
+            let parameters = Paths.GetItemsParameters(
+                userID: userSession.user.id,
+                parentID: item.id,
+                fields: ItemFields.allCases
+            )
+            let request = Paths.getItems(parameters: parameters)
+            let response = try await userSession.client.send(request)
+
+            await MainActor.run {
+                self.photoAlbumItems = response.value.items ?? []
+            }
         }
-        .store(in: &cancellables)
+        
     }
 }

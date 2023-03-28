@@ -97,24 +97,7 @@ struct PagingLibraryView: View {
             libraryListView
         }
     }
-    
-    private func parentKey(items: [BaseItemDto]) -> String {
-        var keys: [String: Int] = [:]
-        items.forEach{item in
-            if keys[item.parentId ?? "NIL"] == nil {
-                keys[item.parentId ?? "NIL"] = 0
-            }
-            keys[item.parentId ?? "NIL"]! += 1
-        }
-        var largest = (key: "", value: 0)
-        keys.forEach { key in
-            
-            if largest.value <= key.value {
-                largest = key
-            }
-        }
-        return largest.key
-    }
+
 }
 
 extension PagingLibraryView {

@@ -8,24 +8,22 @@
 
 import Foundation
 import JellyfinAPI
+import CoreStore
+import Combine
 
 class ServerDetailViewModel: ViewModel {
 
-    let server: ServerState
+    var server: ServerState
 
     init(server: ServerState) {
         self.server = server
     }
 
+    
     func setServerCurrentURI(uri: String) {
-//        SessionManager.main.setServerCurrentURI(server: server, uri: uri)
-//            .sink { c in
-//                print(c)
-//            } receiveValue: { newServerState in
-//                self.server = newServerState
-//
-//                Notifications[.didChangeServerCurrentURI].post(object: newServerState)
-//            }
-//            .store(in: &cancellables)
+        
+        let newURL = server.urls.filter{ $0.absoluteString == uri }[0]
+        
+        userSession
     }
 }

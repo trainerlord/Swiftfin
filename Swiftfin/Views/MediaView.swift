@@ -42,7 +42,7 @@ struct MediaView: View {
                     case "liveTV":
                         router.route(to: \.liveTV)
                     case "homevideos":
-                        router.route(to: \.library, .init(parent: item.library, type: .homeVideos, filters: .init()))
+                        router.route(to: \.library, .init(parent: viewModel.item, type: .homeVideos, filters: .init()))
                     default:
                         router.route(to: \.library, .init(parent: viewModel.item, type: .library, filters: .init()))
                     }

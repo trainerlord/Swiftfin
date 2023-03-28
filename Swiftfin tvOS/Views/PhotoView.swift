@@ -22,9 +22,7 @@ struct PhotoView: View {
     var body: some View {
             ZStack {
                 Color.black
-                
-                
-                
+            
                 TabView(selection: $tabSelection) {
                     ForEach(  Array(photoModel.photoAlbumItems.enumerated()), id: \.element.id) {index, image in
                         Group {

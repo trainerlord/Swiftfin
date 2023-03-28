@@ -16,19 +16,7 @@ extension PhotoAlbumItemView {
         var viewModel: PhotoAlbumItemViewModel
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
-                if let genres = viewModel.item.genreItems, !genres.isEmpty {
-                    ItemView.GenresHStack(genres: genres)
-
-                    Divider()
-                }
-
-                // MARK: Studios
-
-                if let studios = viewModel.item.studios, !studios.isEmpty {
-                    ItemView.StudiosHStack(studios: studios)
-
-                    Divider()
-                }
+                
 
                 // MARK: Items
 

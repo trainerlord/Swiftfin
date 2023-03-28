@@ -30,9 +30,10 @@ struct PlaybackSpeedKey: EnvironmentKey {
     static let defaultValue: Binding<Float> = .constant(1)
 }
 
+@available(iOSApplicationExtension, unavailable)
 struct SafeAreaInsetsKey: EnvironmentKey {
     static var defaultValue: EdgeInsets {
-        UIApplication.shared.keyWindow?.safeAreaInsets.asEdgeInsets ?? .zero
+        UIApplication.shared.keyWindow?.safeAreaInsets.asEdgeInsets  ?? .init(top: 0, leading: 0, bottom: 0, trailing: 0)//.zero
     }
 }
 
@@ -76,6 +77,7 @@ extension EnvironmentValues {
         set { self[PlaybackSpeedKey.self] = newValue }
     }
 
+    @available(iOSApplicationExtension, unavailable)
     var safeAreaInsets: EdgeInsets {
         self[SafeAreaInsetsKey.self]
     }

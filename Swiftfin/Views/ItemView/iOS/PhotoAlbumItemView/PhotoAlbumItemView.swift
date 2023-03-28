@@ -57,38 +57,54 @@ struct PhotoAlbumItemView: View {
     private let adpativeColums = [GridItem(.adaptive(minimum: PhotoAlbumItemView.getMinItemSize(), maximum: PhotoAlbumItemView.getMaxItemSize()), spacing: ITEM_SPACING)]
     //private var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
-        ScrollView(.vertical) {
-            Spacer()
-            ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(viewModel.photoAlbumItems.filter{$0.type == BaseItemKind.photoAlbum}, id: \.hashValue)
-                    { album in
-                        //Text("\(album.name ?? "NIL"): \(album.album ?? "NIL")")
-                        
-                        PosterButton(item: album, type: libraryGridPosterType)
-                            .scaleItem(libraryGridPosterType == .landscape && UIDevice.isPhone ? 0.85 : 1).onSelect {
-                                itemRouter.route(to: \.item, album)
-                            }
-                    }
-                }.padding(10)
+        VStack(alignment: .leading, spacing: 20) {
+
+            if let genres = viewModel.item.genreItems, !genres.isEmpty {
+                ItemView.GenresHStack(genres: genres)
+
+                Divider()
             }
-            LazyVGrid(columns: adpativeColums, spacing: PhotoAlbumItemView.ITEM_SPACING) {
-                ForEach(Array(viewModel.photoAlbumItems.enumerated()), id: \.element.hashValue) { index, item in
-                    Button {
-                        withAnimation(.easeInOut) {
-                            
-                            photoModel.photoAlbumItems = viewModel.photoAlbumItems
-                            photoModel.SelectedPhoto = index
-                            itemRouter.route(to: \.photo, photoModel)
+
+            // MARK: Studios
+
+            if let studios = viewModel.item.studios, !studios.isEmpty {
+                ItemView.StudiosHStack(studios: studios)
+
+                Divider()
+            }
+            ScrollView(.vertical) {
+                Spacer()
+                ScrollView(.horizontal) {
+                    LazyHStack {
+                        ForEach(viewModel.photoAlbumItems.filter{$0.type == BaseItemKind.photoAlbum}, id: \.hashValue)
+                        { album in
+                            PosterButton(state: .item(album), type: libraryGridPosterType)
+                                .scaleItem(libraryGridPosterType == .landscape && UIDevice.isPhone ? 0.85 : 1)
+                                .onSelect {
+                                    itemRouter.route(to: \.item, album)
+                                }
                         }
-                    } label: {
-                        ImageView(item.imageSource(.primary, maxWidth: PhotoAlbumItemView.getMaxItemSize()))
-                            .failure {
-                                InitialFailureView(item.displayName.initials)
+                    }.padding(10)
+                }
+                LazyVGrid(columns: adpativeColums, spacing: PhotoAlbumItemView.ITEM_SPACING) {
+                    ForEach(Array(viewModel.photoAlbumItems.enumerated()), id: \.element.hashValue) { index, item in
+                        Button {
+                            withAnimation(.easeInOut) {
+                                
+                                photoModel.photoAlbumItems = viewModel.photoAlbumItems
+                                photoModel.SelectedPhoto = index
+                                
+                                itemRouter.route(to: \.photo, photoModel)
                             }
-                    }.frame(minWidth: 0, maxWidth: .infinity)
-                        .aspectRatio(1, contentMode: .fill)
-                        .clipped()
+                        } label: {
+                            ImageView(item.imageSource(.primary, maxWidth: PhotoAlbumItemView.getMaxItemSize()))
+                                .failure {
+                                    InitialFailureView(item.displayTitle.initials)
+                                }
+                        }.frame(minWidth: 0, maxWidth: .infinity)
+                            .aspectRatio(1, contentMode: .fill)
+                            .clipped()
+                    }
                 }
             }
         }.environmentObject(photoModel)

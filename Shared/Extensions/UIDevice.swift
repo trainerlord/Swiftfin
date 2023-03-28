@@ -21,7 +21,8 @@ extension UIDevice {
     static var isPhone: Bool {
         current.userInterfaceIdiom == .phone
     }
-
+    
+    @available(iOSApplicationExtension, unavailable)
     static var hasNotch: Bool {
         (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0) > 0 &&
             isPhone

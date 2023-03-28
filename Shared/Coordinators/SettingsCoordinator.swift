@@ -9,8 +9,12 @@
 import PulseUI
 import Stinsen
 import SwiftUI
+import Factory
 
 final class SettingsCoordinator: NavigationCoordinatable {
+    
+    @Injected(Container.userSession)
+    private var userSession
 
     let stack = NavigationStack(initial: \SettingsCoordinator.start)
 
@@ -100,7 +104,7 @@ final class SettingsCoordinator: NavigationCoordinatable {
 
     @ViewBuilder
     func makeServerDetail() -> some View {
-        ServerDetailView(viewModel: .init(server: .sample))
+        ServerDetailView(viewModel: .init(server: userSession.server))
     }
 
     func makeVideoPlayerSettings() -> VideoPlayerSettingsCoordinator {

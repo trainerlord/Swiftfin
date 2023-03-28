@@ -25,6 +25,7 @@ final class VideoPlayerCoordinator: NavigationCoordinatable {
         self.videoPlayerManager = manager
     }
 
+    
     @ViewBuilder
     func makeStart() -> some View {
         #if os(iOS)

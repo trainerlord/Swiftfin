@@ -20,7 +20,7 @@ import UIKit
 final class SwiftfinSession {
 
     let client: JellyfinClient
-    let server: ServerState
+    var server: ServerState
     let user: UserState
     let authenticated: Bool
 
@@ -41,12 +41,13 @@ final class SwiftfinSession {
 
         self.client = client
     }
+    
 }
 
 final class BasicServerSession {
 
     let client: JellyfinClient
-    let server: ServerState
+    var server: ServerState
 
     init(server: ServerState) {
         self.server = server
