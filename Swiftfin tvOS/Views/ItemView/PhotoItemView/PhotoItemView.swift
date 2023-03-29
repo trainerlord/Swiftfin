@@ -14,8 +14,8 @@ struct PhotoItemView: View {
     var viewModel: CollectionItemViewModel
 
     var body: some View {
-        ItemView.CinematicScrollView(viewModel: viewModel) {
-            ContentView(viewModel: viewModel)
-        }
+        //ItemView.CinematicScrollView(viewModel: viewModel) {
+            ContentView(viewModel: .init(item: viewModel.item))
+        //}
     }
 }

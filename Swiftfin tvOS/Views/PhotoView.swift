@@ -22,20 +22,34 @@ struct PhotoView: View {
     var body: some View {
             ZStack {
                 Color.black
-            
-                TabView(selection: $tabSelection) {
-                    ForEach(  Array(photoModel.photoAlbumItems.enumerated()), id: \.element.id) {index, image in
-                        Group {
-                            ImageView(image.imageSource(.primary, maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)).failure {
-                                InitialFailureView(image.displayTitle.initials)
-                            }.resizingMode(.aspectFit).frame(width: UIScreen.main.bounds.width).opacity(swipe)
-                        }.tag(index)
+                VStack {
+                    TabView(selection: $tabSelection) {
+                        ForEach(  Array(photoModel.photoAlbumItems.enumerated()), id: \.element.id) {index, image in
+                            Group {
+                                ImageView(image.imageSource(.primary, maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)).failure {
+                                    InitialFailureView(image.displayTitle.initials)
+                                }.resizingMode(.aspectFit).frame(width: UIScreen.main.bounds.width).opacity(swipe)
+                            }.tag(index)
+                        }
+                    }.tabViewStyle(.page(indexDisplayMode: .never)).onAppear {
+                        tabSelection = photoModel.SelectedPhoto
                     }
-                }.tabViewStyle(.page(indexDisplayMode: .never)).onAppear {
-                    tabSelection = photoModel.SelectedPhoto
+                    HStack {
+                        Button {
+                            tabSelection = tabSelection - 1
+                            if (tabSelection < 0) {tabSelection = 0}
+                        } label: {Text("Previos")}
+                        Button {
+                            tabSelection = tabSelection + 1
+                            if (tabSelection >= photoModel.photoAlbumItems.count) {tabSelection = photoModel.photoAlbumItems.count-1}
+                        } label: {Text("Next")}
+                        
+                    }
                 }
+                
             }.ignoresSafeArea().zIndex(4)
         
         
     }
+
 }

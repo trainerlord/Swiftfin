@@ -29,6 +29,8 @@ struct ItemView: View {
             SeriesItemView(viewModel: .init(item: item))
         case .boxSet:
             CollectionItemView(viewModel: .init(item: item))
+        case .photoAlbum:
+            PhotoItemView(viewModel: .init(item: item))
         default:
             Text(L10n.notImplementedYetWithType(item.type ?? "--"))
         }

@@ -33,6 +33,8 @@ struct MediaView: View {
                         router.route(to: \.library, .init(parent: viewModel.item, type: .folders, filters: .init()))
                     case "liveTV":
                         tabRouter.root(\.liveTV)
+                    case "homevideos":
+                        router.route(to: \.library, .init(parent: viewModel.item, type: .homeVideos, filters: .init()))
                     default:
                         router.route(to: \.library, .init(parent: viewModel.item, type: .library, filters: .init()))
                     }
